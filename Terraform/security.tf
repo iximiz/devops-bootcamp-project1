@@ -20,11 +20,11 @@ resource "aws_security_group" "web_sg" {
   }
 
   ingress {
-    description     = "Node Exporter from monitoring"
-    from_port       = 9100
-    to_port         = 9100
-    protocol        = "tcp"
-    security_groups = [aws_security_group.private_sg.id]
+    description = "Node Exporter from monitoring server"
+    from_port   = 9100
+    to_port     = 9100
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.136/32"]
   }
 
   egress {

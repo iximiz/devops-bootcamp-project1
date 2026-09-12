@@ -1,0 +1,17 @@
+---
+- name: Deploy Node Exporter
+  hosts: web
+  become: true
+
+  roles:
+    - geerlingguy.docker
+
+  tasks:
+    - name: Run Node Exporter container
+      community.docker.docker_container:
+        name: node-exporter
+        image: prom/node-exporter:latest
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "9100:9100"
