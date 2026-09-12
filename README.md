@@ -1,4 +1,4 @@
-# DevOps Bootcamp Final Project
+# DevOps Bootcamp Final Project (AWS DevOps Infrastructure & CI/CD Deployment Project)
 
 This repository contains my DevOps Bootcamp final project, implementing a complete AWS-based application deployment and monitoring environment using Terraform, Ansible, Docker, Amazon ECR, Prometheus, Grafana, Cloudflare, and GitHub Actions.
 
