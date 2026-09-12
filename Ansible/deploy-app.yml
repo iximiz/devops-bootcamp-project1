@@ -1,0 +1,30 @@
+---
+- name: Deploy application
+  hosts: web
+  become: true
+
+  tasks:
+    - name: Login Docker to Amazon ECR
+      shell: |
+        aws ecr get-login-password --region ap-southeast-1 | \
+        docker login --username AWS --password-stdin \
+        585242447690.dkr.ecr.ap-southeast-1.amazonaws.com
+      no_log: true
+
+    - name: Pull application image
+      shell: |
+        docker pull \
+        585242447690.dkr.ecr.ap-southeast-1.amazonaws.com/devops-bootcamp/final-project-amirul:latest
+
+    - name: Stop existing application container
+      shell: docker stop shipit-app
+      failed_when: false
+
+    - name: Remove existing application container
+      shell: docker rm shipit-app
+      failed_when: false
+
+    - name: Run application container
+      shell: |
+        docker run -d --name shipit-app -p 80:80 \
+        585242447690.dkr.ecr.ap-southeast-1.amazonaws.com/devops-bootcamp/final-project-amirul:latest
