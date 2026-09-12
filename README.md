@@ -582,30 +582,89 @@ Access from outside the permitted Monitoring Server is restricted by the Securit
 
 ## 14. Screenshots and Evidence
 
-Project evidence is stored under:
+The following screenshots provide evidence of the deployed infrastructure, automation, monitoring, and CI/CD implementation.
 
-```text
-docs/screenshots/
-```
+### Terraform Backend
 
-Evidence includes:
+Amazon S3 is used as the remote backend for Terraform state.
 
-* Terraform backend and infrastructure
-* VPC and subnet configuration
-* EC2 instances
-* Security Groups
-* SSM access
-* Ansible execution
-* Ansible idempotency
-* Amazon ECR image
-* Running web application
-* Prometheus target
-* Grafana dashboard
-* Cloudflare Tunnel
-* GitHub Actions ECR pipeline
-* GitHub Actions deployment
-* Format checks
-* Terraform Plan pull request check
+![Terraform S3 Backend](docs/screenshots/01-terraform-backend-s3.png)
+
+### AWS VPC Network
+
+The infrastructure uses one VPC with separate public and private subnets, route tables, an Internet Gateway, and a NAT Gateway.
+
+![VPC Resource Map](docs/screenshots/02-vpc-resource-map.png)
+
+### EC2 Instances
+
+Three EC2 instances are deployed with separate responsibilities: Web Server, Ansible Controller, and Monitoring Server.
+
+![EC2 Instances](docs/screenshots/03-ec2-instances.png)
+
+### Security Group
+
+Node Exporter port `9100` on the Web Server is restricted to the Monitoring Server at `10.0.0.136/32`.
+
+![Security Group](docs/screenshots/04-security-group.png)
+
+### AWS Systems Manager Access
+
+AWS Systems Manager provides access to the private infrastructure without requiring direct SSH access.
+
+![SSM Instance Status](docs/screenshots/05-ssm-private-access1.png)
+
+![SSM Private Access](docs/screenshots/05-ssm-private-access2.png)
+
+### Ansible Idempotency
+
+Ansible configuration can be executed repeatedly without making unnecessary changes. A repeated execution returns `changed=0` and `failed=0`.
+
+![Ansible Idempotency](docs/screenshots/06-ansible-idempotent.png)
+
+### Amazon ECR
+
+The custom application Docker image is stored in the private Amazon ECR repository `devops-bootcamp/final-project-amirul`.
+
+![ECR Repository](docs/screenshots/07-ecr-image1.png)
+
+![ECR Image](docs/screenshots/07-ecr-image2.png)
+
+### Web Application
+
+The containerized application is publicly accessible through HTTPS at `web.amirulcloud.com`.
+
+![Web Application](docs/screenshots/08-web-application.png)
+
+### Prometheus
+
+Prometheus successfully scrapes Node Exporter metrics from the Web Server at `10.0.0.5:9100`.
+
+![Prometheus Target](docs/screenshots/09-prometheus-target.png)
+
+### Grafana Dashboard
+
+Grafana visualizes CPU, memory, and disk metrics collected from the Web Server.
+
+![Grafana Dashboard](docs/screenshots/10-grafana-dashboard.png)
+
+### Cloudflare Tunnel
+
+The private Monitoring Server exposes Grafana securely through Cloudflare Tunnel without requiring a public IP address.
+
+![Cloudflare Tunnel](docs/screenshots/11-cloudflare-tunnel.png)
+
+### CI/CD Pipeline
+
+GitHub Actions automatically builds the application image, pushes it to Amazon ECR, and deploys the latest image to the Web Server.
+
+![GitHub Actions CI/CD](docs/screenshots/12-github-actions-cicd.png)
+
+### Terraform Plan Gate
+
+Terraform infrastructure changes are validated through a pull request workflow before being merged into the `main` branch.
+
+![Terraform Plan PR](docs/screenshots/13-terraform-plan-pr.png)
 
 ---
 
