@@ -3,4 +3,6 @@
 *.tfstate.*
 *.tfvars
 *.tfvars.json
-.terraform.lock.hcl
+
+App/node_modules/
+App/dist/
