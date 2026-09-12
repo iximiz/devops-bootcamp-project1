@@ -4,8 +4,6 @@ This repository contains my DevOps Bootcamp final project, implementing a comple
 
 ## Live URLs
 
-## Live URLs
-
 | Resource | URL |
 |---|---|
 | Web Application | https://web.amirulcloud.com |
