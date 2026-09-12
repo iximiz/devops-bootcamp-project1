@@ -1,0 +1,48 @@
+name: Format Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  terraform-format:
+    name: Terraform Format Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Check Terraform formatting
+        working-directory: Terraform
+        run: terraform fmt -check -recursive
+
+  ansible-syntax:
+    name: Ansible Syntax Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Ansible
+        run: pip install ansible
+
+      - name: Install Ansible requirements
+        working-directory: Ansible
+        run: ansible-galaxy install -r requirements.yml
+
+      - name: Check Ansible playbook syntax
+        working-directory: Ansible
+        run: |
+          ansible-playbook --syntax-check install-docker.yml
+          ansible-playbook --syntax-check deploy-app.yml
+          ansible-playbook --syntax-check monitoring.yml
+          ansible-playbook --syntax-check node-exporter.yml
