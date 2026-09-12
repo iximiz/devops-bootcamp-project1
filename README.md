@@ -4,11 +4,14 @@ This repository contains my DevOps Bootcamp final project, implementing a comple
 
 ## Live URLs
 
-| Resource             | URL                                                |
-| -------------------- | -------------------------------------------------- |
-| Web Application      | https://web.amirulcloud.com                        |
-| Monitoring / Grafana | https://monitoring.amirulcloud.com                 |
-| GitHub Repository    | https://github.com/iximiz/devops-bootcamp-project1 |
+## Live URLs
+
+| Resource | URL |
+|---|---|
+| Web Application | https://web.amirulcloud.com |
+| Monitoring / Grafana | https://monitoring.amirulcloud.com |
+| GitHub Repository | https://github.com/iximiz/devops-bootcamp-project1 |
+| Project Documentation (GitHub Pages) | https://iximiz.github.io/devops-bootcamp-project1/ |
 
 ## Architecture Overview
 
@@ -621,11 +624,14 @@ The project includes the following additional implementations:
 
 ## Project Links
 
-**Application:**
+**Application:**  
 https://web.amirulcloud.com
 
-**Monitoring:**
+**Monitoring:**  
 https://monitoring.amirulcloud.com
 
-**Repository:**
+**Repository:**  
 https://github.com/iximiz/devops-bootcamp-project1
+
+**GitHub Pages Documentation:**  
+https://iximiz.github.io/devops-bootcamp-project1/
